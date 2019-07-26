@@ -1,0 +1,140 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  /*border: 1px solid red;*/
+}
+
+/* General Styling */
+
+img {
+  height: 30px;
+}
+
+input {
+  outline: none;
+  border: 2px solid #1F1F3D;
+}
+
+button {
+  background-color: #1F1F3D;
+  color: #ffffff;
+  height: 45px;
+  border: none;
+  border-radius: 3px;
+  font-weight: 800;
+  font-size: 16px;
+  margin: 10px 0 10px 0;
+  width: 100%;
+}
+
+/* Header */
+
+.header-page {
+  background-color: #1F1F3D;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+h1 {
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 30px;
+  text-transform: uppercase;
+  padding-left: 10px;
+}
+
+span {
+  color: #FFC30C;
+}
+
+.div-search {
+  display: flex;
+  height: 45px;
+  padding: 5px;
+
+}
+
+.div-search input {
+   border-bottom-right-radius: 3px;
+   border-top-right-radius: 3px;
+   border-left: none;
+   height: 40px;
+   padding: 10px;
+   text-decoration: none;
+   width: 300px;
+}
+
+.div-search img {
+  background-color: #C7D3D8;
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
+  border: 2px solid #1F1F3D;
+  border-right: none;
+  height: 40px;
+  padding: 8px;
+  width: 37px;
+}
+
+/* Aside */
+
+aside {
+  background-color: #587A8A;
+  height: 100vh;
+  width: 30%;
+}
+
+.aside-sect-1 {
+  border-bottom: 1 px solid #3C6577;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width:100%;
+  border-bottom: 2px solid #3C6577;
+  }
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  justify-content: center;
+}
+
+.form-input {
+  border: 1px solid #1F1F3D;
+  height: 45px;
+  width:100%;
+}
+
+form div {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+label {
+  color: #ffffff;
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+.img-plus {
+  background-color: #1F1F3D;
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+  padding: 5px;
+  height: 45px;
+}
+
+.aside-sect-2 {
+  padding: 0 10px 0 10px;
+  width: 100%;
+  border-bottom: 1 px solid #3C6577;
+  display: flex;
+  flex-direction: column;
+}
+

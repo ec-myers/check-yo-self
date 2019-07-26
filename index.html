@@ -4,33 +4,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="UTF-8">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-  <header>
-    <h1>Check Yo' Self</h1>
-    <img src="images/search.svg" alt="search icon">
-    <input type="text" placeholder="Search" id="input-search">
+  <header class="header-page">
+    <h1>Check <span>Yo'</span> Self</h1>
+    <div class="div-search">
+      <img src="images/search.svg" alt="search icon">
+      <input type="text" placeholder="Search" id="input-search">
+    </div>
   </header>
   <aside>
-    <section>
-      <form>
-        <label>TaskTitle</label>
-        <input type="text">
+    <section class="aside-sect-1">
+      <form class="aside-form">
+        <label>Task Title</label>
+        <input class="form-input" type="text">
         <label>Task Item</label>
-        <input type="text">
-          <img src="images/plus.svg">
-        <button>Make Task List</button>
-        <button>Clear All</button>
+        <div>
+          <input class="form-input" type="text">
+          <img class="img-plus" src="images/plus.svg">
+        </div>  
+        <button class="btn-make-task">Make Task List</button>
+        <button class="btn-clear">Clear All</button>
       </form>
     </section>
-    <section>
-      <button>Filter by Urgency</button>
-  <main>
+    <section class="aside-sect-2">
+      <button class="btn-urgency">Filter by Urgency</button>
+    </section>
+  </aside>    
+    <main>
     <card>
       <header>
         <input>
       </header>
+      <ul>
         <li></li>
+      </ul>
       <footer>
         <img src="images/urgent.svg">
         <img src="images/delete.svg">
