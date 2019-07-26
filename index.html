@@ -3,18 +3,21 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>Check Yo' Self</header>
+  <header>
+    <h1>Check Yo' Self</h1>
     <img src="images/search.svg" alt="search icon">
     <input type="text" placeholder="Search" id="input-search">
-  <aside type="tex">
+  </header>
+  <aside>
     <section>
       <form>
         <label>TaskTitle</label>
-        <input>
+        <input type="text">
         <label>Task Item</label>
-        <input>
+        <input type="text">
           <img src="images/plus.svg">
         <button>Make Task List</button>
         <button>Clear All</button>
@@ -23,6 +26,16 @@
     <section>
       <button>Filter by Urgency</button>
   <main>
+    <card>
+      <header>
+        <input>
+      </header>
+        <li></li>
+      <footer>
+        <img src="images/urgent.svg">
+        <img src="images/delete.svg">
+      </footer>
+    </card>
   </main>
 <script type="text/javascript" src="todo-list.js"></script>
 <script type="text/javascript" src="main.js"></script>
