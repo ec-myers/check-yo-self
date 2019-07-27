@@ -171,27 +171,48 @@ label {
   width: 100%;
   column-width: 13em; 
 }
-
 article {
   background-color: #FAFDFF;
   border: 3px solid #C7D3D8;
   width: 300px;
   display: inline-block;
   margin:  0.25rem;
-  padding:  1rem;
+  padding:  3px;
   width:  100%; 
   background:  #efefef;
+  min-height: 400px;
+  min-width: 200px;
 }
+
+/*article {
+  background-color: #FAFDFF;
+  border: 3px solid #C7D3D8;
+  width: 300px;
+  display: inline-block;
+  margin:  0.25rem;
+  padding:  3px;
+  width:  100%; 
+  background:  #efefef;
+  min-height: 400px;
+  min-width: 200px;
+}*/
 
 article header {
   height: 40px;
   border-bottom: 3px solid #C7D3D8;
+  padding: 10px;
 }
 
 article h2 {
   color: #1F1F3D;
   font-size: 20px;
   padding: 5px;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
 }
 
 article footer {
