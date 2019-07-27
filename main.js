@@ -74,19 +74,18 @@ function createTaskList() {
   var taskListStrings = []
   var taskElements = document.querySelectorAll('#temp-item');
   for (var i = 0; i < taskElements.length; i++ ) {
-    console.log(taskElements[i].innerText);
    taskListStrings.push(taskElements[i].innerText);
   }
   return taskListStrings;
 }
 
 function displayTaskList(array) {
-  var addLiTasks = [];
+  var liTaskStrings = '';
 
   for (var i = 0; i < array.length; i++) {
-    addLiTasks.push(`<li><img src="images/checkbox.svg">${array[i]}</li>`)
+    liTaskStrings = liTaskStrings + `<li><img class="img-unchecked"src="images/checkbox.svg">${array[i]}</li>`;
   }
-  return addLiTasks;
+  return liTaskStrings;
 }
 
 function addCard(toDoObj) {
