@@ -12,8 +12,8 @@ var makeListBtn = document.querySelector('#btn-make-task');
 
 // searchArea.addEventListener('click',);
 // cardArea.addEventListener('click',);
-titleInput.addEventListener('keyup', enableMakeListButton);
-taskInput.addEventListener('keyup', enableMakeListButton);
+titleInput.addEventListener('keyup', enableFormButtons);
+taskInput.addEventListener('keyup', enableTaskBtn);
 asideArea.addEventListener('click', handleTempTask);
 makeListBtn.addEventListener('click', addToDoList);
 window.addEventListener('DOMContentLoaded', handlePageLoad);
@@ -30,26 +30,33 @@ function handleTempTask(e) {
   e.preventDefault();
   if (e.target.id === 'btn-task') {
     addTempTask(taskInput.value);
-    clearInput(taskInput);
-    enableMakeListButton(e);
+    enableFormButtons(e);
+    clearTaskInput(e);
+    disableTaskBtn(e);
   } else if (e.target.id === 'btn-delete') {
     deleteTempTask(e);
   } else if (e.target.id === 'btn-make-task') {
     displayTaskList(e);
     clearFormInputs(e);
+  } else if (e.target.id === 'btn-clear') {
+    console.log(e);
+    clearFormInputs(e);
   }
-  console.log(taskInput.value);
-  //add item to an array
-  //add item to DOM
-  //enable Make List button
-  //enable Clear All button
-  //change button to delete button in list item
+}
+
+function disableTaskBtn() {
+  addTaskBtn.disabled = true;
+}
+
+function clearTaskInput() {
+  taskInput.value = '';
 }
 
 function clearFormInputs() {
   titleInput.value = '';
   taskInput.value = '';
   tempTaskList.innerText = '';
+  clearBtn.disabled = true;
 }
 
 function addTempTask(input) {
@@ -69,6 +76,7 @@ function createToDoItemArray() {
 function addToDoList(e) {
   e.preventDefault();
   var tasks = createTaskList();
+  console.log(tasks);
   var toDoList = new ToDoList(Date.now(), titleInput.value, false, tasks);
   toDoLists.push(toDoList);
   toDoList.saveToStorage(toDoLists);
@@ -112,6 +120,7 @@ function displayTaskList(array) {
 function addCard(toDoObj) {
   var taskList = toDoObj.tasks;
   var html = displayTaskList(taskList);
+  console.log(html);
   var toDoCard = `<article class="to-do-list" id="todo-list" data-id=${toDoObj.id}>
         <header>
           <h2>${toDoObj.title}</h2>
@@ -132,12 +141,13 @@ function addCard(toDoObj) {
   disableMakeListButton();
 }
 
-function enableMakeListButton() {
+function enableFormButtons() {
+  enableTaskBtn();
   var task = document.querySelector('#temp-item');
 
-  if (tempTaskList !== undefined || titleInput.value !== '') {
-    console.log(titleInput.value)
+  if (task.innerText !== null || titleInput.value !== '') {
     makeListBtn.disabled = false;
+    clearBtn.disabled = false;
   } 
 }
 
@@ -145,16 +155,14 @@ function disableMakeListButton() {
   makeListBtn.disabled = true;
 }
 
-// function toggleAddListButton() {
-//   if (titleInput.value != '' || taskInput.value != '' || tempTaskList.innerText != '') {
-//     addListBtn.disabled = false;
-//   } else {
-//     addListBtn.disabled = true;
-//   }
-// }
+function enableTaskBtn() {
+  if (titleInput.value !== '' && taskInput.value !== '') {
+    addTaskBtn.disabled = false;
+  } else if (titleInput.value === '' && taskInput.value === '')
+    addTaskBtn.disabled = true;
+}
 
 function toggleClearButton(e) {
-  console.log(e)
   e.preventDefault();
   clearBtn.disabled = !clearBtn.disabled;
 }
