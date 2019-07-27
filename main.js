@@ -16,9 +16,14 @@ titleInput.addEventListener('keyup', enableMakeListButton);
 taskInput.addEventListener('keyup', enableMakeListButton);
 asideArea.addEventListener('click', handleTempTask);
 makeListBtn.addEventListener('click', addToDoList);
+window.addEventListener('DOMContentLoaded', handlePageLoad);
 // addtaskBtn.addEventListener('click', handleTempTask);
 
-populateCards(toDoLists);
+
+function handlePageLoad() {
+  instantiateToDoLists();
+  populateCards(toDoLists);
+}
 
 
 function handleTempTask(e) {
@@ -64,12 +69,19 @@ function createToDoItemArray() {
 function addToDoList(e) {
   e.preventDefault();
   var toDoList = new ToDoList(Date.now(), titleInput.value, false, 'elyse');
-  debugger;
   toDoLists.push(toDoList);
   toDoList.saveToStorage(toDoLists);
   console.log(toDoList);
   addCard(toDoList);
   console.log(toDoLists);
+}
+
+function instantiateToDoLists() {
+  var newArray = JSON.parse(localStorage.getItem('toDoLists')).map(function(toDoList){
+    return new ToDoList(toDoList.id, toDoList.title, toDoList.urgent, toDoList.tasks);
+  }); 
+
+  toDoLists = newArray;
 }
 
 function populateCards(array) {
