@@ -6,10 +6,16 @@
   /*border: 1px solid red;*/
 }
 
+
 /* General Styling */
 
+main {
+  display: flex;
+  flex-direction: row;
+}
+
 img {
-  height: 30px;
+  height: 25px;
 }
 
 input {
@@ -25,7 +31,7 @@ button {
   border-radius: 3px;
   font-weight: 800;
   font-size: 16px;
-  margin: 10px 0 10px 0;
+  margin: 15px 0 0px 0;
   width: 100%;
 }
 
@@ -85,16 +91,18 @@ aside {
   background-color: #587A8A;
   height: 100vh;
   width: 30%;
+  display:inline-block;
+
 }
 
 .aside-sect-1 {
   border-bottom: 1 px solid #3C6577;
-  height: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
   width:100%;
   border-bottom: 2px solid #3C6577;
+  margin-bottom: 7px;
   }
 
 form {
@@ -122,6 +130,24 @@ label {
   padding-bottom: 5px;
 }
 
+.temp-task-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.temp-item {
+  color: #ffffff;
+  font-size: 16px;
+  margin: 10px;
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+}
+
+.img-delete {
+  margin-right: 5px;
+}
+
 .img-plus {
   background-color: #1F1F3D;
   border-bottom-right-radius: 3px;
@@ -136,5 +162,61 @@ label {
   border-bottom: 1 px solid #3C6577;
   display: flex;
   flex-direction: column;
+}
+
+/* Card Section */
+
+.section-main {
+  display:inline-block;
+  width: 100%;
+  column-width: 13em; 
+}
+
+article {
+  background-color: #FAFDFF;
+  border: 3px solid #C7D3D8;
+  width: 300px;
+  display: inline-block;
+  margin:  0.25rem;
+  padding:  1rem;
+  width:  100%; 
+  background:  #efefef;
+}
+
+article header {
+  height: 40px;
+  border-bottom: 3px solid #C7D3D8;
+}
+
+article h2 {
+  color: #1F1F3D;
+  font-size: 20px;
+  padding: 5px;
+}
+
+article footer {
+  height: 53px;
+  border-top: 3px solid #C7D3D8;
+  display: flex;
+  justify-content: space-between;
+}
+
+.div-urgent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5px;
+}
+
+.div-delete {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5px;
+}
+
+p {
+  font-size: 10px;
+  text-transform: uppercase;
 }
 

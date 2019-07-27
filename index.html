@@ -14,37 +14,44 @@
       <input type="text" placeholder="Search" id="input-search">
     </div>
   </header>
-  <aside>
-    <section class="aside-sect-1">
-      <form class="aside-form">
-        <label>Task Title</label>
-        <input class="form-input" type="text">
-        <label>Task Item</label>
-        <div>
-          <input class="form-input" type="text">
-          <img class="img-plus" src="images/plus.svg">
-        </div>  
-        <button class="btn-make-task">Make Task List</button>
-        <button class="btn-clear">Clear All</button>
-      </form>
-    </section>
-    <section class="aside-sect-2">
-      <button class="btn-urgency">Filter by Urgency</button>
-    </section>
-  </aside>    
-    <main>
-    <card>
+  <main>
+    <aside>
+      <section class="aside-sect-1">
+        <form class="aside-form">
+          <label>Task Title</label>
+          <input class="form-input" id="input-title" type="text">
+          <ul class="temp-task-list" id="temp-task-list"></ul>
+          <label>Task Item</label>
+          <ul id="temp-task-list"></ul>
+          <div>
+            <input class="form-input" id="input-item" type="text">
+            <img class="img-plus" id="btn-task" src="images/plus.svg">
+          </div>  
+          <button class="btn-make-task" >Make Task List</button>
+          <button class="btn-clear" >Clear All</button>
+        </form>
+      </section>
+      <section class="aside-sect-2">
+        <button class="btn-urgency">Filter by Urgency</button>
+      </section>
+    </aside>    
+    <section id="card-area">
+    <article>
       <header>
-        <input>
+        <h2>Task Title</h2>
       </header>
-      <ul>
-        <li></li>
-      </ul>
+      <ul></ul>
       <footer>
-        <img src="images/urgent.svg">
-        <img src="images/delete.svg">
+        <div class="div-urgent">
+          <img class="img-urgent" src="images/urgent.svg">
+          <p>Urgent</p>
+        </div>
+        <div class="div-delete">
+          <img class="img-delete" id="btn-delete" src="images/delete.svg">
+          <p>Delete</p>
+        </div>
       </footer>
-    </card>
+    </section>
   </main>
 <script type="text/javascript" src="todo-list.js"></script>
 <script type="text/javascript" src="main.js"></script>
