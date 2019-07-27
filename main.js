@@ -86,19 +86,20 @@ function populateCards(array) {
 }
 
 function createTaskList() {
-  var taskListStrings = []
+  var toDoTasks = []
   var taskElements = document.querySelectorAll('#temp-item');
+
   for (var i = 0; i < taskElements.length; i++ ) {
-   taskListStrings.push(taskElements[i].innerText);
+   toDoTasks.push(new ToDoTask(Date.now(),taskElements[i].innerText, false));
   }
-  return taskListStrings;
+  return toDoTasks;
 }
 
 function displayTaskList(array) {
   var liTaskStrings = '';
 
   for (var i = 0; i < array.length; i++) {
-    liTaskStrings = liTaskStrings + `<li><img class="img-unchecked"src="images/checkbox.svg">${array[i]}</li>`;
+    liTaskStrings = liTaskStrings + `<li><img class="img-unchecked"src="images/checkbox.svg">${array[i].text}</li>`;
   }
   return liTaskStrings;
 }
