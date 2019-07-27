@@ -3,7 +3,7 @@ class ToDoList {
     this.id = id;
     this.title = title;
     this.urgent = urgent;
-    this.tasks = [];
+    this.tasks = tasks;
   }
 
   saveToStorage(array) {
