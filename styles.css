@@ -148,13 +148,16 @@ label {
   margin-right: 5px;
 }
 
-.img-plus {
-  background-color: #1F1F3D;
+.btn-task {
+  border-bottom-left-radius: 0;
   border-bottom-right-radius: 3px;
+  border-top-left-radius: 0;
   border-top-right-radius: 3px;
-  padding: 5px;
   height: 45px;
+  margin-top: 0;
+  width: 53px;
 }
+
 
 .aside-sect-2 {
   padding: 0 10px 0 10px;
@@ -213,6 +216,18 @@ ul {
   display: flex;
   flex-direction: column;
   list-style-type: none;
+}
+
+li {
+  display: flex;
+  flex-direction: row;
+  padding: 2px;
+  margin: 5px 0 5px 0;
+}
+
+.img-unchecked {
+  margin-right: 10px;
+  height: 20px;
 }
 
 article footer {
