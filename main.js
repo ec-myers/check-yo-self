@@ -68,7 +68,8 @@ function createToDoItemArray() {
 
 function addToDoList(e) {
   e.preventDefault();
-  var toDoList = new ToDoList(Date.now(), titleInput.value, false, 'elyse');
+  var tasks = createTaskList();
+  var toDoList = new ToDoList(Date.now(), titleInput.value, false, tasks);
   toDoLists.push(toDoList);
   toDoList.saveToStorage(toDoLists);
   console.log(toDoList);
@@ -109,7 +110,7 @@ function displayTaskList(array) {
 }
 
 function addCard(toDoObj) {
-  var taskList = createTaskList();
+  var taskList = toDoObj.tasks;
   var html = displayTaskList(taskList);
   var toDoCard = `<article class="to-do-list" id="todo-list" data-id=${toDoObj.id}>
         <header>
