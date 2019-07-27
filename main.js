@@ -54,7 +54,6 @@ function createToDoItemArray() {
 
 function addToDoList(e) {
   e.preventDefault();
-    console.log('here');
   var toDoList = new ToDoList(Date.now(), titleInput.value, false, 'elyse');
 
   toDoLists.push(toDoList);
@@ -69,13 +68,24 @@ function populateCards(array) {
   }
 }
 
+function createTaskList() {
+  console.log('here')
+  var taskListStrings = []
+  var taskElements = document.querySelectorAll('#temp-item');
+  for (var i = 0; i < taskElements.length; i++ ) {
+    console.log(taskElements[i].innerText);
+   taskListStrings.push(taskElements[i].innerText);
+  }
+  return taskListStrings;
+}
+
 function addCard(toDoObj) {
-  console.log('here');
+  var taskList = createTaskList();
   var toDoCard = `<article class="to-do-list" id="todo-list" data-id=${toDoObj.id}>
         <header>
           <h2>${toDoObj.title}</h2>
         </header>
-        <ul>${toDoObj.tasks}</ul>
+        <ul>${taskList}</ul>
         <footer>
           <div class="div-urgent">
             <img class="img-urgent" src="images/urgent.svg">
