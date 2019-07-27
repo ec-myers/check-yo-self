@@ -8,14 +8,14 @@ var tempTaskList = document.querySelector('#temp-task-list');
 var clearBtn = document.querySelector('#btn-clear');
 var deleteBtn = document.querySelector('#btn-delete');
 var asideArea = document.querySelector('aside');
-var addListBtn = document.querySelector('#btn-make-task');
+var makeListBtn = document.querySelector('#btn-make-task');
 
 // searchArea.addEventListener('click',);
 // cardArea.addEventListener('click',);
 titleInput.addEventListener('keyup', enableMakeListButton);
 taskInput.addEventListener('keyup', enableMakeListButton);
 asideArea.addEventListener('click', handleTempTask);
-addListBtn.addEventListener('click', addToDoList);
+makeListBtn.addEventListener('click', addToDoList);
 // addtaskBtn.addEventListener('click', handleTempTask);
 
 populateCards(toDoLists);
@@ -31,6 +31,7 @@ function handleTempTask(e) {
     deleteTempTask(e);
   } else if (e.target.id === 'btn-make-task') {
     displayTaskList(e);
+    clearFormInputs(e);
   }
   console.log(taskInput.value);
   //add item to an array
@@ -38,6 +39,12 @@ function handleTempTask(e) {
   //enable Make List button
   //enable Clear All button
   //change button to delete button in list item
+}
+
+function clearFormInputs() {
+  titleInput.value = '';
+  taskInput.value = '';
+  tempTaskList.innerText = '';
 }
 
 function addTempTask(input) {
@@ -57,9 +64,10 @@ function createToDoItemArray() {
 function addToDoList(e) {
   e.preventDefault();
   var toDoList = new ToDoList(Date.now(), titleInput.value, false, 'elyse');
-
+  debugger;
   toDoLists.push(toDoList);
   toDoList.saveToStorage(toDoLists);
+  console.log(toDoList);
   addCard(toDoList);
   console.log(toDoLists);
 }
@@ -108,27 +116,32 @@ function addCard(toDoObj) {
         </footer>
       </article>`
   cardArea.insertAdjacentHTML('afterbegin', toDoCard);
+  disableMakeListButton();
 }
 
 function enableMakeListButton() {
-  var taskBtn = document.querySelector('#btn-make-task');
   var task = document.querySelector('#temp-item');
 
-  if (task !== undefined || titleInput.value !== '') {
+  if (tempTaskList !== undefined || titleInput.value !== '') {
     console.log(titleInput.value)
-    taskBtn.disabled === false;
-  } else if (task === undefined || titleInput.value === '') {
-    taskBtn.disabled === true;
-  }
+    makeListBtn.disabled = false;
+  } 
 }
 
+function disableMakeListButton() {
+  makeListBtn.disabled = true;
+}
+
+// function toggleAddListButton() {
+//   if (titleInput.value != '' || taskInput.value != '' || tempTaskList.innerText != '') {
+//     addListBtn.disabled = false;
+//   } else {
+//     addListBtn.disabled = true;
+//   }
+// }
 
 function toggleClearButton(e) {
   console.log(e)
   e.preventDefault();
   clearBtn.disabled = !clearBtn.disabled;
-}
-
-function clearInput(input) {
-  input.value = '';
 }
