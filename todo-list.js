@@ -11,9 +11,14 @@ class ToDoList {
 
   }
 
-  deleteFromStorage() {
+  deleteFromStorage(array) {
+    var toDoListId = this.id;
+    var index = toDoLists.findIndex(function(toDoList) {
+      return parseInt(toDoList.id) === toDoListId;
+    });
+    var newArray = array.splice(index, 1)
 
-
+    this.saveToStorage(toDoLists);
   }
 
   updateToDo() {

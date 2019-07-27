@@ -11,7 +11,7 @@ var asideArea = document.querySelector('aside');
 var makeListBtn = document.querySelector('#btn-make-task');
 
 // searchArea.addEventListener('click',);
-// cardArea.addEventListener('click',);
+cardArea.addEventListener('click', handleCardButtons);
 titleInput.addEventListener('keyup', enableFormButtons);
 taskInput.addEventListener('keyup', enableTaskBtn);
 asideArea.addEventListener('click', handleTempTask);
@@ -24,7 +24,6 @@ function handlePageLoad() {
   instantiateToDoLists();
   populateCards(toDoLists);
 }
-
 
 function handleTempTask(e) {
   e.preventDefault();
@@ -44,19 +43,11 @@ function handleTempTask(e) {
   }
 }
 
-function disableTaskBtn() {
-  addTaskBtn.disabled = true;
-}
-
-function clearTaskInput() {
-  taskInput.value = '';
-}
-
-function clearFormInputs() {
-  titleInput.value = '';
-  taskInput.value = '';
-  tempTaskList.innerText = '';
-  clearBtn.disabled = true;
+function handleCardButtons(e) {
+  if (e.target.id === 'btn-delete') {
+    console.log('delete event:, event')
+    deleteCard(e);
+  }
 }
 
 function addTempTask(input) {
@@ -66,11 +57,6 @@ function addTempTask(input) {
 
 function deleteTempTask(e) {
   e.target.closest('.temp-item').remove();
-}
-
-
-function createToDoItemArray() {
-
 }
 
 function addToDoList(e) {
@@ -120,7 +106,6 @@ function displayTaskList(array) {
 function addCard(toDoObj) {
   var taskList = toDoObj.tasks;
   var html = displayTaskList(taskList);
-  console.log(html);
   var toDoCard = `<article class="to-do-list" id="todo-list" data-id=${toDoObj.id}>
         <header>
           <h2>${toDoObj.title}</h2>
@@ -136,10 +121,33 @@ function addCard(toDoObj) {
             <p>Delete</p>
           </div>
         </footer>
-      </article>`
+      </article>`;
+
   cardArea.insertAdjacentHTML('afterbegin', toDoCard);
   disableMakeListButton();
 }
+
+function findToDoList(e) {
+  console.log('inside: findToDoList')
+    var toDoListId = e.target.closest('.to-do-list').getAttribute('data-id');
+    var toDoList = toDoLists.find(function(toDoList) {
+      return toDoList.id === parseInt(toDoListId);
+      console.log(toDoList.id)
+      console.log(toDoListId)
+    });
+
+    return toDoList;
+}
+
+function deleteCard(e) {
+  console.log('delete:, inside delete')
+  e.target.closest('.to-do-list').remove();
+  var toDoList = findToDoList(e);
+
+  toDoList.deleteFromStorage(toDoLists);
+}
+
+//error handling functions
 
 function enableFormButtons() {
   enableTaskBtn();
@@ -150,6 +158,7 @@ function enableFormButtons() {
     clearBtn.disabled = false;
   } 
 }
+
 
 function disableMakeListButton() {
   makeListBtn.disabled = true;
@@ -165,4 +174,19 @@ function enableTaskBtn() {
 function toggleClearButton(e) {
   e.preventDefault();
   clearBtn.disabled = !clearBtn.disabled;
+}
+
+function disableTaskBtn() {
+  addTaskBtn.disabled = true;
+}
+
+function clearTaskInput() {
+  taskInput.value = '';
+}
+
+function clearFormInputs() {
+  titleInput.value = '';
+  taskInput.value = '';
+  tempTaskList.innerText = '';
+  clearBtn.disabled = true;
 }
