@@ -29,6 +29,8 @@ function handleTempTask(e) {
     enableMakeListButton(e);
   } else if (e.target.id === 'btn-delete') {
     deleteTempTask(e);
+  } else if (e.target.id === 'btn-make-task') {
+    displayTaskList(e);
   }
   console.log(taskInput.value);
   //add item to an array
@@ -69,7 +71,6 @@ function populateCards(array) {
 }
 
 function createTaskList() {
-  console.log('here')
   var taskListStrings = []
   var taskElements = document.querySelectorAll('#temp-item');
   for (var i = 0; i < taskElements.length; i++ ) {
@@ -79,13 +80,23 @@ function createTaskList() {
   return taskListStrings;
 }
 
+function displayTaskList(array) {
+  var addLiTasks = [];
+
+  for (var i = 0; i < array.length; i++) {
+    addLiTasks.push(`<li><img src="images/checkbox.svg">${array[i]}</li>`)
+  }
+  return addLiTasks;
+}
+
 function addCard(toDoObj) {
   var taskList = createTaskList();
+  var html = displayTaskList(taskList);
   var toDoCard = `<article class="to-do-list" id="todo-list" data-id=${toDoObj.id}>
         <header>
           <h2>${toDoObj.title}</h2>
         </header>
-        <ul>${taskList}</ul>
+        <ul>${html}</ul>
         <footer>
           <div class="div-urgent">
             <img class="img-urgent" src="images/urgent.svg">
