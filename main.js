@@ -75,10 +75,19 @@ function addToDoList(e) {
 
 function instantiateToDoLists() {
   var newArray = JSON.parse(localStorage.getItem('toDoLists')).map(function(toDoList){
-    return new ToDoList(toDoList.id, toDoList.title, toDoList.urgent, toDoList.tasks);
+    var toDoTasksArray = instantiateToDoTasks(toDoList.tasks);
+    return new ToDoList(toDoList.id, toDoList.title, toDoList.urgent, toDoTasksArray);
   }); 
 
   toDoLists = newArray;
+}
+
+function instantiateToDoTasks(array) {
+  var newArray = array.map(function(toDoTask) {
+    return new ToDoTask(toDoTask.id, toDoTask.text, toDoTask.checked);
+  });
+
+  return newArray;
 }
 
 function populateCards(array) {
