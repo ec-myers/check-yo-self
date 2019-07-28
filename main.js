@@ -132,18 +132,25 @@ function addCard(toDoObj) {
 
 function findToDoList(e) {
   console.log('inside: findToDoList')
-    var toDoListId = e.target.closest('.to-do-list').getAttribute('data-id');
-    var toDoList = toDoLists.find(function(toDoList) {
-      return toDoList.id === parseInt(toDoListId);
-      console.log(toDoList.id)
-      console.log(toDoListId)
-    });
+  var toDoListId = e.target.closest('.to-do-list').getAttribute('data-id');
+  var toDoList = toDoLists.find(function(toDoList) {
+    return toDoList.id === parseInt(toDoListId);
+    console.log(toDoList.id)
+    console.log(toDoListId)
+  });
 
-    return toDoList;
+  return toDoList;
 }
 
-function findToDoTask() {
+function findToDoTask(e) {
+  var toDoList = findToDoList(e);
+  var taskId = e.target.closest('li').getAttribute('data-id'); 
+  console.log(taskId);
+  var toDoTask = toDoList.tasks.find(function(toDoTaskObj) {
+    return parseInt(taskId) === toDoTaskObj.id;
+  });
 
+  return toDoTask;
 }
 
 function deleteCard(e) {
@@ -162,8 +169,9 @@ function deleteCard(e) {
 
 function checkImg(e) {
   var toDoList = findToDoList(e);
-  console.log(toDoList)
-
+  var toDoTask = findToDoTask(e);
+  console.log(toDoTask)
+  // var liElement = e.target.closest('li');
   // if(toDoTask.checked === true) {
   //   e.target.setAttribute(src, 'images/checkbox-active.svg')
   // } else if (toDoTask.checked === false) {
