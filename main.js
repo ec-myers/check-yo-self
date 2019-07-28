@@ -109,9 +109,11 @@ function createTaskList() {
 
 function displayTaskList(array) {
   var liTaskStrings = '';
-
   for (var i = 0; i < array.length; i++) {
-    liTaskStrings = liTaskStrings + `<li id="task-item" data-id=${array[i].id}><img id="task-item" src="images/checkbox.svg">${array[i].text}</li>`;
+    var task = array[i];
+    var checkedImg = task.checked ? 'images/checkbox-active.svg' : 'images/checkbox.svg';
+
+    liTaskStrings = liTaskStrings + `<li id="task-item" data-id=${task.id}><img id="task-item" src=${checkedImg}>${task.text}</li>`;
   }
   return liTaskStrings;
 }
@@ -119,6 +121,7 @@ function displayTaskList(array) {
 function addCard(toDoObj) {
   var taskList = toDoObj.tasks;
   var html = displayTaskList(taskList);
+  var deleteImg = areAllTasksChecked(toDoObj) ? "images/delete-active.svg" : "images/delete.svg";
   var toDoCard = `<article class="to-do-list" id="todo-list" data-id=${toDoObj.id}>
         <header>
           <h2>${toDoObj.title}</h2>
@@ -130,7 +133,7 @@ function addCard(toDoObj) {
             <p>Urgent</p>
           </div>
           <div class="div-delete">
-            <img class="img-delete" id="btn-delete" src="images/delete.svg">
+            <img class="img-delete" id="btn-delete" src=${deleteImg}>
             <p>Delete</p>
           </div>
         </footer>
@@ -162,21 +165,25 @@ function findToDoTask(e) {
   return toDoTask;
 }
 
-function enableDeleteButton(e) {
-  var toDoList = findToDoList(e);
-
+function areAllTasksChecked(toDoList) {
   for (var i = 0; i < toDoList.tasks.length; i++) {
     if (toDoList.tasks[i].checked === false) {
-    return; 
+    return false; 
     }
   }
-  deleteCard(e);
+  return true;
 }
 
-function deleteCard(e) {
-  e.target.closest('.to-do-list').remove();
+function enableDeleteButton(e) {
   var toDoList = findToDoList(e);
+  var tasksChecked = areAllTasksChecked(toDoList);
+  if (tasksChecked === true) {
+    deleteCard(e, toDoList);
+  }
+}
 
+function deleteCard(e, toDoList) {
+  e.target.closest('.to-do-list').remove();
   toDoList.deleteFromStorage(toDoLists);
 }
 
@@ -185,16 +192,7 @@ function checkImg(e) {
   var toDoTask = findToDoTask(e);
   toDoTask.updateChecked();
   toDoList.saveToStorage(toDoLists);
-  console.log(toDoTask)
-  // var liElement = e.target.closest('li');
-  // if(toDoTask.checked === true) {
-  //   e.target.setAttribute(src, 'images/checkbox-active.svg')
-  // } else if (toDoTask.checked === false) {
-  //   e.target.setAttribute(src, 'images/checkbox-active.svg')
-  // }
   var updateChecked = toDoTask.checked ? 'images/checkbox-active.svg' : 'images/checkbox.svg';
-console.log('inside check img')
-  // toDoTask.updateChecked();
   e.target.setAttribute('src', updateChecked);
 }
 
@@ -209,7 +207,6 @@ function enableFormButtons() {
     clearBtn.disabled = false;
   } 
 }
-
 
 function disableMakeListButton() {
   makeListBtn.disabled = true;
