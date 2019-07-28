@@ -32,8 +32,8 @@ function handleTempTask(e) {
     enableFormButtons(e);
     clearTaskInput(e);
     disableTaskBtn(e);
-  } else if (e.target.id === 'btn-delete') {
-    deleteTempTask(e);
+  // } else if (e.target.id === 'btn-delete') {
+  //   deleteTempTask(e);
   } else if (e.target.id === 'btn-make-task') {
     displayTaskList(e);
     clearFormInputs(e);
@@ -44,7 +44,8 @@ function handleTempTask(e) {
 
 function handleCardButtons(e) {
   if (e.target.id === 'btn-delete') {
-    console.log('delete event:, event')
+    console.log('delete event: event')
+    enableDeleteButton(e);
   } else if (e.target.id === 'task-item') {
     console.log('check-uncheck event');
     console.log(e);
@@ -161,19 +162,23 @@ function findToDoTask(e) {
   return toDoTask;
 }
 
+function enableDeleteButton(e) {
+  var toDoList = findToDoList(e);
+
+  for (var i = 0; i < toDoList.tasks.length; i++) {
+    if (toDoList.tasks[i].checked === false) {
+    return; 
+    }
+  }
+  deleteCard(e);
+}
+
 function deleteCard(e) {
-  console.log('delete:, inside delete')
   e.target.closest('.to-do-list').remove();
   var toDoList = findToDoList(e);
 
   toDoList.deleteFromStorage(toDoLists);
 }
-
-// function checkTask() {
-//   var toDoList = findToDoList(e);
-//   var toDoTask = 
-
-// }
 
 function checkImg(e) {
   var toDoList = findToDoList(e);
