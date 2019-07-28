@@ -6,7 +6,7 @@ class ToDoTask {
   }
 
   updateChecked() {
-    this.checked != this.checked;
+    this.checked = !this.checked;
   }
 }
 
