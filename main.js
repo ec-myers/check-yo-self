@@ -38,7 +38,6 @@ function handleTempTask(e) {
     displayTaskList(e);
     clearFormInputs(e);
   } else if (e.target.id === 'btn-clear') {
-    console.log(e);
     clearFormInputs(e);
   }
 }
@@ -46,7 +45,10 @@ function handleTempTask(e) {
 function handleCardButtons(e) {
   if (e.target.id === 'btn-delete') {
     console.log('delete event:, event')
-    deleteCard(e);
+  } else if (e.target.id === 'task-item') {
+    console.log('check-uncheck event');
+    console.log(e);
+    checkImg(e);
   }
 }
 
@@ -99,7 +101,7 @@ function displayTaskList(array) {
   var liTaskStrings = '';
 
   for (var i = 0; i < array.length; i++) {
-    liTaskStrings = liTaskStrings + `<li><img class="img-unchecked"src="images/checkbox.svg">${array[i].text}</li>`;
+    liTaskStrings = liTaskStrings + `<li id="task-item"><img id="task-item" src="images/checkbox.svg">${array[i].text}</li>`;
   }
   return liTaskStrings;
 }
@@ -140,12 +142,37 @@ function findToDoList(e) {
     return toDoList;
 }
 
+function findToDoTask() {
+
+}
+
 function deleteCard(e) {
   console.log('delete:, inside delete')
   e.target.closest('.to-do-list').remove();
   var toDoList = findToDoList(e);
 
   toDoList.deleteFromStorage(toDoLists);
+}
+
+// function checkTask() {
+//   var toDoList = findToDoList(e);
+//   var toDoTask = 
+
+// }
+
+function checkImg(e) {
+  var toDoList = findToDoList(e);
+  console.log(toDoList)
+
+  // if(toDoTask.checked === true) {
+  //   e.target.setAttribute(src, 'images/checkbox-active.svg')
+  // } else if (toDoTask.checked === false) {
+  //   e.target.setAttribute(src, 'images/checkbox-active.svg')
+  // }
+  // var updateChecked = toDoTask.checked ? 'images/checkbox.svg' : 'images/checkbox-active.svg';
+console.log('inside check img')
+  // toDoTask.updateChecked();
+  e.target.setAttribute('src', 'images/checkbox-active.svg');
 }
 
 //error handling functions

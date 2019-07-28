@@ -4,5 +4,9 @@ class ToDoTask {
     this.text = text;
     this.checked = checked;
   }
+
+  updateChecked() {
+    this.checked != this.checked;
+  }
 }
 
