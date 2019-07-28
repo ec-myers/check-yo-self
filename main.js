@@ -44,12 +44,12 @@ function handleTempTask(e) {
 
 function handleCardButtons(e) {
   if (e.target.id === 'btn-delete') {
-    console.log('delete event: event')
     enableDeleteButton(e);
   } else if (e.target.id === 'task-item') {
-    console.log('check-uncheck event');
-    console.log(e);
     checkImg(e);
+  } else if (e.target.id === 'img-urgent') {
+    console.log('inside: urgent event')
+    toggleUrgent(e);
   }
 }
 
@@ -129,7 +129,7 @@ function addCard(toDoObj) {
         <ul>${html}</ul>
         <footer>
           <div class="div-urgent">
-            <img class="img-urgent" src="images/urgent.svg">
+            <img class="img-urgent" id="img-urgent" src="images/urgent.svg">
             <p>Urgent</p>
           </div>
           <div class="div-delete">
@@ -174,6 +174,13 @@ function areAllTasksChecked(toDoList) {
   return true;
 }
 
+function toggleDeleteButton(e) {
+  console.log('inside: toggleDelete')
+  // var toDoList = areAllTasksChecked(toDoList);
+ var deleteImg = toDoList.tasks.checked ? "images/delete-active.svg" : "images/delete.svg";
+ e.target.setAttribute('src', deleteImg);
+}
+
 function enableDeleteButton(e) {
   var toDoList = findToDoList(e);
   var tasksChecked = areAllTasksChecked(toDoList);
@@ -194,8 +201,15 @@ function checkImg(e) {
   toDoList.saveToStorage(toDoLists);
   var updateChecked = toDoTask.checked ? 'images/checkbox-active.svg' : 'images/checkbox.svg';
   e.target.setAttribute('src', updateChecked);
+  toggleDeleteButton(e);
 }
 
+function toggleUrgent(e) {
+  console.log('inside: toggleUrgent')
+  var toDoList = findToDoList(e);
+  toDoList.updateToDo();
+  toDoList.saveToStorage(toDoLists);
+}
 //error handling functions
 
 function enableFormButtons() {

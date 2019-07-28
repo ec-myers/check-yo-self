@@ -7,8 +7,7 @@ class ToDoList {
   }
 
   saveToStorage(array) {
-  localStorage.setItem('toDoLists', JSON.stringify(array));
-
+    localStorage.setItem('toDoLists', JSON.stringify(array));
   }
 
   deleteFromStorage(array) {
@@ -22,8 +21,8 @@ class ToDoList {
   }
 
   updateToDo() {
-
-
+    console.log('inside: updateToDo')
+    this.urgent = !this.urgent;
   }
 
   updateTask() {
