@@ -92,7 +92,7 @@ function createTaskList() {
   var taskElements = document.querySelectorAll('#temp-item');
 
   for (var i = 0; i < taskElements.length; i++ ) {
-   toDoTasks.push(new ToDoTask(Date.now(),taskElements[i].innerText, false));
+   toDoTasks.push(new ToDoTask(i + 1,taskElements[i].innerText, false));
   }
   return toDoTasks;
 }
@@ -101,7 +101,7 @@ function displayTaskList(array) {
   var liTaskStrings = '';
 
   for (var i = 0; i < array.length; i++) {
-    liTaskStrings = liTaskStrings + `<li id="task-item"><img id="task-item" src="images/checkbox.svg">${array[i].text}</li>`;
+    liTaskStrings = liTaskStrings + `<li id="task-item" data-id=${array[i].id}><img id="task-item" src="images/checkbox.svg">${array[i].text}</li>`;
   }
   return liTaskStrings;
 }
