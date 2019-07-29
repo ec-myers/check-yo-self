@@ -46,7 +46,7 @@ function handleCardButtons(e) {
   if (e.target.id === 'btn-delete') {
     enableDeleteButton(e);
   } else if (e.target.id === 'task-item') {
-    checkImg(e);
+    checkTask(e);
   } else if (e.target.id === 'img-urgent') {
     console.log('inside: urgent event')
     toggleUrgent(e);
@@ -128,11 +128,11 @@ function addCard(toDoObj) {
   var footer = toDoObj.urgent ? "footer-urgent" : "footer";
   var urgentImg = toDoObj.urgent ? "images/urgent-active.svg" : "images/urgent.svg";
   var toDoCard = `<article class=${articleClass} id="todo-list" data-id=${toDoObj.id}>
-        <header class=${header}>
+        <header class=${header} id="header">
           <h2>${toDoObj.title}</h2>
         </header>
         <ul>${html}</ul>
-        <footer class=${footer}>
+        <footer class=${footer} id="footer">
           <div class="div-urgent">
             <img class="img-urgent" id="img-urgent" src=${urgentImg}>
             <p class=${urgentLabel} id="urgent-label">urgent</p>
@@ -179,11 +179,11 @@ function areAllTasksChecked(toDoList) {
   return true;
 }
 
-function toggleDeleteButton(e) {
-  console.log('inside: toggleDelete')
-  // var toDoList = areAllTasksChecked(toDoList);
- var deleteImg = toDoList.tasks.checked ? "images/delete-active.svg" : "images/delete.svg";
- e.target.setAttribute('src', deleteImg);
+function toggleDeleteButton(e, toDoList) {
+  var areTasksChecked = areAllTasksChecked(toDoList);
+  var deleteImg = areTasksChecked ? "images/delete-active.svg" : "images/delete.svg";
+
+  document.querySelector('.img-delete').setAttribute('src', deleteImg);
 }
 
 function enableDeleteButton(e) {
@@ -199,14 +199,14 @@ function deleteCard(e, toDoList) {
   toDoList.deleteFromStorage(toDoLists);
 }
 
-function checkImg(e) {
+function checkTask(e) {
   var toDoList = findToDoList(e);
   var toDoTask = findToDoTask(e);
   toDoTask.updateChecked();
   toDoList.saveToStorage(toDoLists);
   var updateChecked = toDoTask.checked ? 'images/checkbox-active.svg' : 'images/checkbox.svg';
   e.target.setAttribute('src', updateChecked);
-  toggleDeleteButton(e);
+  toggleDeleteButton(e, toDoList);
 }
 
 function toggleUrgent(e) {
@@ -218,16 +218,17 @@ function toggleUrgent(e) {
 
 function updateUrgentCard(e, toDoList) {
   // var updateUrgent = toDoTask.urgent ? ""
-  // var articleClass = toDoList.urgent ? "todo-list-urgent" : "todo-list";
+  var articleClass = toDoList.urgent ? "todo-list-urgent" : "todo-list";
   var urgentLabel = toDoList.urgent ? "label-urgent" : "label";
-  // var header = toDoList.urgent ? "header-urgent" : "header";
-  // var footer = toDoList.urgent ? "footer-urgent" : "footer";
+  var header = toDoList.urgent ? "header-urgent" : "header";
+  var footer = toDoList.urgent ? "footer-urgent" : "footer";
   var urgentImg = toDoList.urgent ? "images/urgent-active.svg" : "images/urgent.svg";
 
-  // e.target.setAttribute('class', articleClass);
+  e.target.closest('article').setAttribute('class', articleClass);
   e.target.setAttribute('src', urgentImg);
-  console.log(e.target.nextElementSibling)
-  e.target.nextElementSibling.setAttribute('class', urgentLabel);
+  document.querySelector('#header').setAttribute('class', header);
+  document.querySelector('div').setAttribute('class', footer);
+  document.querySelector('#urgent-label').setAttribute('class', urgentLabel);
 }
 
 //error handling functions
