@@ -4,7 +4,7 @@ var cardArea = document.querySelector('#card-area');
 var clearBtn = document.querySelector('#btn-clear');
 var deleteBtn = document.querySelector('#btn-delete');
 var makeListBtn = document.querySelector('#btn-make-task');
-var searchArea = document.querySelector('#input-search');
+var searchInput = document.querySelector('#input-search');
 var taskInput = document.querySelector('#input-item');
 var tempTaskList = document.querySelector('#temp-task-list');
 var titleInput = document.querySelector('#input-title');
@@ -13,6 +13,7 @@ var toDoLists = [];
 asideArea.addEventListener('click', handleTempTask);
 cardArea.addEventListener('click', handleCardButtons);
 makeListBtn.addEventListener('click', addToDoList);
+searchInput.addEventListener('keyup', handleSearch);
 taskInput.addEventListener('keyup', enableTaskBtn);
 titleInput.addEventListener('keyup', enableFormButtons);
 window.addEventListener('DOMContentLoaded', handlePageLoad);
@@ -46,6 +47,13 @@ function handleCardButtons(e) {
     checkTask(e);
   } else if (e.target.id === 'img-urgent') {
     toggleUrgent(e);
+  }
+}
+
+function handleSearch(e) {
+  if (e.target.id === 'input-search') {
+    console.log(e)
+    displaySearch(toDoLists);
   }
 }
 
@@ -105,6 +113,7 @@ function createTaskList() {
 
 function displayTaskList(array) {
   var liTaskStrings = '';
+
   for (var i = 0; i < array.length; i++) {
     var task = array[i];
     var checkedImg = task.checked ? 'images/checkbox-active.svg' : 'images/checkbox.svg';
@@ -145,12 +154,9 @@ function addCard(toDoObj) {
 }
 
 function findToDoList(e) {
-  console.log('inside: findToDoList')
   var toDoListId = e.target.closest('#todo-list').getAttribute('data-id');
   var toDoList = toDoLists.find(function(toDoList) {
     return toDoList.id === parseInt(toDoListId);
-    console.log(toDoList.id)
-    console.log(toDoListId)
   });
 
   return toDoList;
@@ -223,6 +229,27 @@ function updateUrgentCard(e, toDoList) {
   document.querySelector('#header').setAttribute('class', header);
   document.querySelector('#footer').setAttribute('class', footer);
   document.querySelector('#urgent-label').setAttribute('class', urgentLabel);
+}
+
+function displaySearch(array) {
+  console.log('inside: displaySearch')
+  cardArea.innerHTML = '';
+  if (searchInput.value === '') {
+    populateCards(array);
+  } else {
+    var searchArray = returnSearchArray(array, searchInput.value)
+    console.log(searchArray)
+    populateCards(searchArray);
+  }
+}
+
+function returnSearchArray(array, searchTerms) {
+  console.log('inside: returnSearch')
+  var searchResultsArray = array.filter(function(toDoList) {
+    return toDoList.title.toLowerCase().includes(searchTerms.toLowerCase())
+  });
+
+  return searchResultsArray;
 }
 
 //error handling functions
