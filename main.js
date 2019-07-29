@@ -1,23 +1,22 @@
-var toDoLists = [];
-var searchArea = document.querySelector('#input-search');
-var cardArea = document.querySelector('#card-area');
-var taskInput = document.querySelector('#input-item');
-var titleInput = document.querySelector('#input-title');
 var addTaskBtn = document.querySelector('#btn-task');
-var tempTaskList = document.querySelector('#temp-task-list');
+var asideArea = document.querySelector('aside');
+var cardArea = document.querySelector('#card-area');
 var clearBtn = document.querySelector('#btn-clear');
 var deleteBtn = document.querySelector('#btn-delete');
-var asideArea = document.querySelector('aside');
 var makeListBtn = document.querySelector('#btn-make-task');
+var searchArea = document.querySelector('#input-search');
+var taskInput = document.querySelector('#input-item');
+var tempTaskList = document.querySelector('#temp-task-list');
+var titleInput = document.querySelector('#input-title');
+var toDoLists = [];
 
-// searchArea.addEventListener('click',);
-cardArea.addEventListener('click', handleCardButtons);
-titleInput.addEventListener('keyup', enableFormButtons);
-taskInput.addEventListener('keyup', enableTaskBtn);
 asideArea.addEventListener('click', handleTempTask);
+cardArea.addEventListener('click', handleCardButtons);
 makeListBtn.addEventListener('click', addToDoList);
+taskInput.addEventListener('keyup', enableTaskBtn);
+titleInput.addEventListener('keyup', enableFormButtons);
 window.addEventListener('DOMContentLoaded', handlePageLoad);
-// addtaskBtn.addEventListener('click', handleTempTask);
+
 
 
 function handlePageLoad() {
@@ -32,8 +31,6 @@ function handleTempTask(e) {
     enableFormButtons(e);
     clearTaskInput(e);
     disableTaskBtn(e);
-  // } else if (e.target.id === 'btn-delete') {
-  //   deleteTempTask(e);
   } else if (e.target.id === 'btn-make-task') {
     displayTaskList(e);
     clearFormInputs(e);
@@ -43,12 +40,11 @@ function handleTempTask(e) {
 }
 
 function handleCardButtons(e) {
-  if (e.target.id === 'btn-delete') {
+  if (e.target.id === 'btn-delete-2') {
     enableDeleteButton(e);
   } else if (e.target.id === 'task-item') {
     checkTask(e);
   } else if (e.target.id === 'img-urgent') {
-    console.log('inside: urgent event')
     toggleUrgent(e);
   }
 }
@@ -138,7 +134,7 @@ function addCard(toDoObj) {
             <p class=${urgentLabel} id="urgent-label">urgent</p>
           </div>
           <div class="div-delete">
-            <img class="img-delete" id="btn-delete" src=${deleteImg}>
+            <img class="img-delete" id="btn-delete-2" src=${deleteImg}>
             <p>Delete</p>
           </div>
         </footer>
@@ -182,8 +178,7 @@ function areAllTasksChecked(toDoList) {
 function toggleDeleteButton(e, toDoList) {
   var areTasksChecked = areAllTasksChecked(toDoList);
   var deleteImg = areTasksChecked ? "images/delete-active.svg" : "images/delete.svg";
-
-  document.querySelector('.img-delete').setAttribute('src', deleteImg);
+  e.target.closest('.todo-list').querySelector('#btn-delete-2').setAttribute('src', deleteImg);
 }
 
 function enableDeleteButton(e) {
