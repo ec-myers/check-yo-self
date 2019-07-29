@@ -217,7 +217,6 @@ function toggleUrgent(e) {
 }
 
 function updateUrgentCard(e, toDoList) {
-  // var updateUrgent = toDoTask.urgent ? ""
   var articleClass = toDoList.urgent ? "todo-list-urgent" : "todo-list";
   var urgentLabel = toDoList.urgent ? "label-urgent" : "label";
   var header = toDoList.urgent ? "header-urgent" : "header";
@@ -227,7 +226,7 @@ function updateUrgentCard(e, toDoList) {
   e.target.closest('article').setAttribute('class', articleClass);
   e.target.setAttribute('src', urgentImg);
   document.querySelector('#header').setAttribute('class', header);
-  document.querySelector('div').setAttribute('class', footer);
+  document.querySelector('#footer').setAttribute('class', footer);
   document.querySelector('#urgent-label').setAttribute('class', urgentLabel);
 }
 

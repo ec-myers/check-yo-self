@@ -205,32 +205,11 @@ label {
   width: 100%;
 }
 
-/*article {
-  background-color: #FAFDFF;
-  border: 3px solid #C7D3D8;
-  width: 300px;
-  display: inline-block;
-  margin:  0.25rem;
-  padding:  3px;
-  width:  100%; 
-  background:  #efefef;
-  min-height: 400px;
-  min-width: 200px;
-}*/
-
 .header {
   height: 40px;
   border-bottom: 3px solid #C7D3D8;
   padding: 4px 0 4px 12px;
 }
-
-.header-urgent {
-  height: 40px;
-  border-bottom: 3px solid #FFC30C;
-  padding: 4px 0 4px 12px;
-}
-
-
 
 article h2 {
   color: #1F1F3D;
@@ -274,6 +253,12 @@ li {
   justify-content: space-between;
 }
 
+.header-urgent {
+  height: 40px;
+  border-bottom: 3px solid #FFC30C;
+  padding: 4px 0 4px 12px;
+}
+
 .div-urgent {
   display: flex;
   flex-direction: column;
@@ -303,4 +288,3 @@ p {
   text-transform: uppercase;
   color: #B23A25;
 }
-
