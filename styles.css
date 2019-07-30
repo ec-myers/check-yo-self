@@ -33,6 +33,13 @@ button {
   font-size: 16px;
   margin: 15px 0 0px 0;
   width: 100%;
+  outline: none;
+}
+
+button:disabled {
+  opacity: 0.6;
+  pointer-events: none;
+  transition: 0.2s;
 }
 
 /* Header */
@@ -167,7 +174,7 @@ label {
   width: 53px;
 }
 
-.btn-urgency {
+.btn-urgent {
   width: 95%;
 }
 
@@ -224,6 +231,11 @@ li {
   flex-direction: row;
   padding: 2px;
   margin: 5px 0 5px 0;
+}
+
+.active-text {
+  font-style: italic;
+  
 }
 
 li img {
@@ -293,4 +305,9 @@ p {
 
 .hidden {
   visibility: hidden;
+  border: none;
+}
+
+.active {
+  background-color: #EF4A23;
 }
