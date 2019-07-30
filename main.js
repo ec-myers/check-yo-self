@@ -32,6 +32,8 @@ function handleTempTask(e) {
     enableFormButtons(e);
     clearTaskInput(e);
     disableTaskBtn(e);
+  } else if (e.target.id === 'btn-delete') {
+    deleteTempTask(e);
   } else if (e.target.id === 'btn-make-task') {
     displayTaskList(e);
     clearFormInputs(e);
@@ -237,12 +239,12 @@ function displayToDoPrompt() {
 //   }
 // }
 
-function displayUrgentPrompt() {
-  var urgentArray = returnUrgentArray(array);
-  if (urgentArray.length === 0) {
-    cardArea.insertAdjacentHTML('afterbegin', `<p id="urgent-prompt">You have no urgent items.</p>`);
-  }
-}
+// function displayUrgentPrompt() {
+//   var urgentArray = returnUrgentArray(array);
+//   if (urgentArray.length === 0) {
+//     cardArea.insertAdjacentHTML('afterbegin', `<p id="urgent-prompt">You have no urgent items.</p>`);
+//   }
+// }
 
 function toggleUrgentBtn() {
   urgentBtn.clicked = !urgentBtn.clicked;
@@ -330,6 +332,7 @@ function returnSearchArray(array, searchTerms) {
 //error handling functions
 
 function enableFormButtons() {
+  console.log('inside: enableForm')
   enableTaskBtn();
   var task = document.querySelector('#temp-item');
 
