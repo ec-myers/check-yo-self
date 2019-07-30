@@ -97,7 +97,7 @@ span {
 aside {
   background-color: #587A8A;
   height: 100vh;
-  width: 30%;
+  width: 400px;
   display:inline-block;
 
 }
@@ -196,16 +196,12 @@ label {
   margin-bottom: 10px;
   padding: 10px 0px 0px 0px;
   width: 100%;
+
 }
 
 .urgent {
   background-color: #FEE89D;
   border: 2px solid #FCC30C;
-  break-inside: avoid;
-  color: #1F1F3D;
-  margin-bottom: 10px;
-  padding: 10px 0px 0px 0px;
-  width: 100%;
 }
 
 .header {
@@ -309,4 +305,59 @@ p {
 
 .active {
   background-color: #EF4A23;
+}
+
+/* media queries */
+
+@media (max-width: 735px) {
+  main {
+    display: flex;
+    flex-direction: column;
+  }
+
+  aside {
+    width: 100%;
+    height: 100%;
+  }
+
+  .card-area {
+
+  }
+
+  .header-page {
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+    padding: 5px;
+  }
+
+  .div-search {
+    margin-bottom: 10px;
+    width: 100%;
+  }
+
+  .div-search input {
+    width: 100%;
+  }
+
+  .btn-urgent {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .card-area {
+  width: 100%;
+  column-count: 2;
+  break-inside: avoid;
+  padding: 10px;
+  }
+}
+@media (max-width: 900px) {
+  .card-area {
+  width: 100%;
+  column-count: 1;
+  break-inside: avoid;
+  padding: 10px;
+}
 }
