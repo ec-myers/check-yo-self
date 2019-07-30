@@ -21,6 +21,7 @@ window.addEventListener('DOMContentLoaded', handlePageLoad);
 function handlePageLoad() {
   instantiateToDoLists();
   populateCards(toDoLists);
+  displayToDoPrompt();
 }
 
 function handleTempTask(e) {
@@ -151,6 +152,7 @@ function addCard(toDoObj) {
 
   cardArea.insertAdjacentHTML('afterbegin', toDoCard);
   disableMakeListButton();
+  displayToDoPrompt();
 }
 
 function findToDoList(e) {
@@ -198,6 +200,7 @@ function enableDeleteButton(e) {
 function deleteCard(e, toDoList) {
   e.target.closest('#todo-list').remove();
   toDoList.deleteFromStorage(toDoLists);
+  displayToDoPrompt();
 }
 
 function checkTask(e) {
@@ -208,6 +211,15 @@ function checkTask(e) {
   var updateChecked = toDoTask.checked ? 'images/checkbox-active.svg' : 'images/checkbox.svg';
   e.target.setAttribute('src', updateChecked);
   toggleDeleteButton(e, toDoList);
+}
+  var toDoPrompt = document.querySelector('#todo-prompt');
+
+function displayToDoPrompt() {
+  if (toDoLists.length === 0) {
+    toDoPrompt.classList.remove('hidden');
+  } else {
+    toDoPrompt.classList.add('hidden');
+  }
 }
 
 function toggleUrgent(e) {
