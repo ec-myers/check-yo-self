@@ -129,12 +129,12 @@ function addCard(toDoObj) {
   var taskList = toDoObj.tasks;
   var html = displayTaskList(taskList);
   var deleteImg = areAllTasksChecked(toDoObj) ? "images/delete-active.svg" : "images/delete.svg";
-  var articleClass = toDoObj.urgent ? "todo-list-urgent" : "todo-list";
+  var articleClass = toDoObj.urgent ? "urgent" : "";
   var urgentLabel = toDoObj.urgent ? "label-urgent" : "label";
   var header = toDoObj.urgent ? "header-urgent" : "header";
   var footer = toDoObj.urgent ? "footer-urgent" : "footer";
   var urgentImg = toDoObj.urgent ? "images/urgent-active.svg" : "images/urgent.svg";
-  var toDoCard = `<article class=${articleClass} id="todo-list" data-id=${toDoObj.id}>
+  var toDoCard = `<article class="todo-list ${articleClass}" id="todo-list" data-id=${toDoObj.id}>
         <header class=${header} id="header">
           <h2>${toDoObj.title}</h2>
         </header>
@@ -188,6 +188,7 @@ function toggleDeleteButton(e, toDoList) {
   var areTasksChecked = areAllTasksChecked(toDoList);
   var deleteImg = areTasksChecked ? "images/delete-active.svg" : "images/delete.svg";
   e.target.closest('.todo-list').querySelector('#btn-delete-2').setAttribute('src', deleteImg);
+  console.log(e.target.closest('.todo-list'))
 }
 
 function enableDeleteButton(e) {
@@ -284,13 +285,12 @@ function toggleUrgent(e) {
 }
 
 function updateUrgentCard(e, toDoList) {
-  var articleClass = toDoList.urgent ? "todo-list-urgent" : "todo-list";
   var urgentLabel = toDoList.urgent ? "label-urgent" : "label";
   var header = toDoList.urgent ? "header-urgent" : "header";
   var footer = toDoList.urgent ? "footer-urgent" : "footer";
   var urgentImg = toDoList.urgent ? "images/urgent-active.svg" : "images/urgent.svg";
 
-  e.target.closest('article').setAttribute('class', articleClass);
+  e.target.closest('article').classList.toggle('urgent');
   e.target.setAttribute('src', urgentImg);
   e.target.closest('article').querySelector('#header').setAttribute('class', header);
   e.target.closest('article').querySelector('#footer').setAttribute('class', footer);

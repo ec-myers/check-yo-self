@@ -198,7 +198,7 @@ label {
   width: 100%;
 }
 
-.todo-list-urgent {
+.urgent {
   background-color: #FEE89D;
   border: 2px solid #FCC30C;
   break-inside: avoid;
@@ -235,7 +235,6 @@ li {
 
 .active-text {
   font-style: italic;
-  
 }
 
 li img {
