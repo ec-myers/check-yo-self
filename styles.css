@@ -329,21 +329,22 @@ p {
   }
 }
 
-@media (max-width: 1200px) {
-
-  .card-area {
-  width: 100%;
-  column-count: 2;
-  break-inside: avoid;
-  padding: 10px;
-  }
-}
 
 @media (max-width: 900px) {
 
   .card-area {
   width: 100%;
   column-count: 1;
+  break-inside: avoid;
+  padding: 10px;
+  }
+}
+
+@media (max-width: 1200px) {
+
+  .card-area {
+  width: 100%;
+  column-count: 2;
   break-inside: avoid;
   padding: 10px;
   }
