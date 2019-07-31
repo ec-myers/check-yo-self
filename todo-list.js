@@ -15,18 +15,12 @@ class ToDoList {
     var index = toDoLists.findIndex(function(toDoList) {
       return parseInt(toDoList.id) === toDoListId;
     });
-    var newArray = array.splice(index, 1)
+    var newArray = array.splice(index, 1);
 
     this.saveToStorage(toDoLists);
   }
 
   updateToDo() {
-    console.log('inside: updateToDo')
     this.urgent = !this.urgent;
-  }
-
-  updateTask() {
-
-
   }
 }
