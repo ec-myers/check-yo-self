@@ -1,3 +1,4 @@
+var toDoLists = [];
 var addTaskBtn = document.querySelector('#btn-task');
 var asideArea = document.querySelector('aside');
 var cardArea = document.querySelector('#card-area');
@@ -9,7 +10,7 @@ var searchInput = document.querySelector('#input-search');
 var taskInput = document.querySelector('#input-item');
 var tempTaskList = document.querySelector('#temp-task-list');
 var titleInput = document.querySelector('#input-title');
-var toDoLists = [];
+var toDoPrompt = document.querySelector('#todo-prompt');
 
 asideArea.addEventListener('click', handleTempTask);
 cardArea.addEventListener('click', handleCardButtons);
@@ -31,7 +32,6 @@ function handleTempTask(e) {
     addTempTask(taskInput.value);
     enableFormButtons(e);
     clearTaskInput(e);
-    disableTaskBtn(e);
   } else if (e.target.id === 'btn-delete') {
     deleteTempTask(e);
   } else if (e.target.id === 'btn-make-task') {
@@ -41,19 +41,17 @@ function handleTempTask(e) {
     clearFormInputs(e);
     enableTaskBtn();
   } else if (e.target.id === 'btn-urgent') {
-    // displayUrgent(toDoLists);
     displayUrgent(toDoLists);
-    // displayUrgentPrompt(toDoLists)
   }
 }
 
 function handleCardButtons(e) {
   if (e.target.id === 'btn-delete-2') {
-    enableDeleteButton(e);
+    deleteCard(e);
   } else if (e.target.id === 'task-item') {
     checkTask(e);
   } else if (e.target.id === 'img-urgent') {
-    toggleUrgent(e);
+    updateUrgentStatus(e);
   }
 }
 
@@ -65,6 +63,7 @@ function handleSearch(e) {
 
 function addTempTask(input) {
   var tempTask = `<li class="temp-item" id="temp-item" data-id=""><img class="img-delete" id="btn-delete" src="images/delete.svg">${input}</li>`;
+  
   tempTaskList.insertAdjacentHTML('beforeend', tempTask);
 }
 
@@ -105,7 +104,7 @@ function populateCards(array) {
 }
 
 function createTaskList() {
-  var toDoTasks = []
+  var toDoTasks = [];
   var taskElements = document.querySelectorAll('#temp-item');
 
   for (var i = 0; i < taskElements.length; i++ ) {
@@ -142,11 +141,11 @@ function addCard(toDoObj) {
         </header>
         <ul>${html}</ul>
         <footer class=${footer} id="footer">
-          <div class="div-urgent">
+          <div>
             <img class="img-urgent" id="img-urgent" src=${urgentImg}>
             <p class=${urgentLabel} id="urgent-label">urgent</p>
           </div>
-          <div class="div-delete">
+          <div>
             <img class="img-delete" id="btn-delete-2" src=${deleteImg}>
             <p>Delete</p>
           </div>
@@ -186,39 +185,40 @@ function areAllTasksChecked(toDoList) {
   return true;
 }
 
-function toggleDeleteButton(e, toDoList) {
+function updateDeleteBtnImage(e, toDoList) {
   var areTasksChecked = areAllTasksChecked(toDoList);
   var deleteImg = areTasksChecked ? "images/delete-active.svg" : "images/delete.svg";
+
   e.target.closest('.todo-list').querySelector('#btn-delete-2').setAttribute('src', deleteImg);
-  console.log(e.target.closest('.todo-list'))
 }
 
-function enableDeleteButton(e) {
+function deleteCard(e) {
   var toDoList = findToDoList(e);
   var tasksChecked = areAllTasksChecked(toDoList);
-  if (tasksChecked === true) {
-    deleteCard(e, toDoList);
-  }
-}
 
-function deleteCard(e, toDoList) {
+  if (tasksChecked === true) {
   e.target.closest('#todo-list').remove();
   toDoList.deleteFromStorage(toDoLists);
   displayToDoPrompt();
+  }
 }
 
 function checkTask(e) {
   var toDoList = findToDoList(e);
   var toDoTask = findToDoTask(e);
+
   toDoTask.updateChecked();
   toDoList.saveToStorage(toDoLists);
+  updateCheckedImg(e, toDoTask);
+  updateDeleteBtnImage(e, toDoList);
+}
+
+function updateCheckedImg(e, toDoTask) {
   var updateChecked = toDoTask.checked ? 'images/checkbox-active.svg' : 'images/checkbox.svg';
-  var updateCheckedText = toDoTask.checked ? 'active-text' : '';
+
   e.target.setAttribute('src', updateChecked);
   e.target.closest('#task-li').classList.toggle('active-text');
-  toggleDeleteButton(e, toDoList);
 }
-  var toDoPrompt = document.querySelector('#todo-prompt');
 
 function displayToDoPrompt() {
   if (toDoLists.length === 0) {
@@ -227,50 +227,34 @@ function displayToDoPrompt() {
     toDoPrompt.classList.add('hidden');
   }
 }
-  var urgentPrompt = document.querySelector('#urgent-prompt');
-
-// function displayUrgentPrompt(array) {
-//   console.log('inside: urgentPrompt')
-//   var urgentArray = returnUrgentArray(array);
-//   if (urgentArray.length === 0) {
-//     urgentPrompt.classList.remove('hidden');
-//   } else {
-//     urgentPrompt.classList.add('hidden');
-//   }
-// }
-
-// function displayUrgentPrompt() {
-//   var urgentArray = returnUrgentArray(array);
-//   if (urgentArray.length === 0) {
-//     cardArea.insertAdjacentHTML('afterbegin', `<p id="urgent-prompt">You have no urgent items.</p>`);
-//   }
-// }
-
-function toggleUrgentBtn() {
-  urgentBtn.clicked = !urgentBtn.clicked;
-}
 
 function displayUrgent(array) {
   toggleUrgentBtn();
   if (urgentBtn.clicked === true) {
+    var urgentArray = returnUrgentArray(array);
+
     cardArea.innerHTML = '';
     urgentBtn.classList.add('active');
-  var urgentArray = returnUrgentArray(array);
-  populateCards(urgentArray);
-  } else if (urgentBtn.clicked === false) {
-    cardArea.innerHTML = '';
+    displayUrgentPrompt(toDoLists);
+    populateCards(urgentArray);
+  } else if (urgentBtn.clicked === false && toDoLists.length !== 0) {
     urgentBtn.classList.remove('active');
+    cardArea.innerHTML = '';
     populateCards(array);
+  } else {
+    urgentBtn.classList.remove('active');
+    cardArea.innerHTML = '';
+    displayToDoPrompt();
   }
-  displayUrgentPrompt();
 }
 
-// function displayUrgent(array) {
-//   cardArea.innerHTML = '';
-//   if (btn)
-//   var urgentArray = returnUrgentArray(array);
-//   populateCards(urgentArray);
-// }
+function displayUrgentPrompt(array) {
+  var urgentArray = returnUrgentArray(array);
+
+  if (urgentArray.length === 0) {
+    cardArea.insertAdjacentHTML('afterbegin', `<p id="urgent-prompt">You have no urgent items.</p>`);
+  }
+}
 
 function returnUrgentArray(array) {
   var urgentArray = array.filter(function(toDoList) {
@@ -279,8 +263,9 @@ function returnUrgentArray(array) {
   return urgentArray;
 }
 
-function toggleUrgent(e) {
+function updateUrgentStatus(e) {
   var toDoList = findToDoList(e);
+
   toDoList.updateToDo();
   toDoList.saveToStorage(toDoLists);
   updateUrgentCard(e, toDoList);
@@ -304,39 +289,24 @@ function displaySearch(array) {
   if (searchInput.value === '') {
     populateCards(array);
   } else {
-    var searchArray = returnSearchArray(array, searchInput.value)
+    var searchArray = returnSearchArray(array, searchInput.value);
     populateCards(searchArray);
   }
 }
 
 function returnSearchArray(array, searchTerms) {
   var searchResultsArray = array.filter(function(toDoList) {
-    return toDoList.title.toLowerCase().includes(searchTerms.toLowerCase())
+    return toDoList.title.toLowerCase().includes(searchTerms.toLowerCase());
   });
 
   return searchResultsArray;
 }
 
-// function displayUrgentTasks(array) {
-
-// }
-
-// function returnUrgentTasksArray(array) {
-//   var urgentArray = array.filter(function(toDoList) {
-//     return toDoList.urgent === true;
-//   })
-
-//   return urgentArray;
-// }
-
-//error handling functions
-
 function enableFormButtons() {
-  console.log('inside: enableForm')
   enableTaskBtn();
-  var task = document.querySelector('#temp-item');
+  var tempTask = document.querySelector('#temp-item');
 
-  if (task.innerText !== '' || titleInput.value !== '') {
+  if ((tempTask !== null && tempTask.innerText !== '') && titleInput.value !== '') {
     makeListBtn.disabled = false;
     clearBtn.disabled = false;
   } 
@@ -349,18 +319,9 @@ function disableMakeListButton() {
 function enableTaskBtn() {
   if (titleInput.value !== '' && taskInput.value !== '') {
     addTaskBtn.disabled = false;
-  } else if (titleInput.value === '' && taskInput.value === ''){
+  } else if (titleInput.value === '' && taskInput.value === '') {
     addTaskBtn.disabled = true;
-}
-}
-
-function toggleTaskBtn() {
-  addTaskBtn.disabled  = !addTaskBtn.disabled;
-}
-
-function toggleClearButton(e) {
-  e.preventDefault();
-  clearBtn.disabled = !clearBtn.disabled;
+  }
 }
 
 function disableTaskBtn() {
@@ -376,4 +337,9 @@ function clearFormInputs() {
   taskInput.value = '';
   tempTaskList.innerText = '';
   clearBtn.disabled = true;
+  makeListBtn.disabled  = true;
+}
+
+function toggleUrgentBtn() {
+  urgentBtn.clicked = !urgentBtn.clicked;
 }

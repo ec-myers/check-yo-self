@@ -3,15 +3,15 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="UTF-8">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
   <header class="header-page">
     <h1>Check <span>Yo'</span> Self</h1>
     <div class="div-search">
-      <img src="images/search.svg" alt="search icon">
-      <input type="text" placeholder="Search" id="input-search">
+      <img src="images/search.svg" alt="search icon" alt="search icon">
+      <input type="text" placeholder="Search" class="input-search" id="input-search">
     </div>
   </header>
   <main>
@@ -22,7 +22,6 @@
           <input class="form-input" id="input-title" type="text">
           <ul class="temp-task-list" id="temp-task-list"></ul>
           <label for="temp-task-list">Task Item</label>
-          <ul id="temp-task-list"></ul>
           <div>
             <input class="form-input" id="input-item" type="text">
             <button class="img-plus btn-task" id="btn-task" disabled>
@@ -38,7 +37,6 @@
     </aside>    
     <section class="card-area" id="card-area">
       <p class="hidden" id="todo-prompt">Create a To Do List!</p>
-      <p class="urgent-prompt" id="urgent-prompt">You have no urgent items.</p>
     </section>
   </main>
 <script type="text/javascript" src="todo-list.js"></script>
