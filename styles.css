@@ -1,13 +1,11 @@
+/* General Styling */
+
 * {
   box-sizing: border-box;
   font-family: 'Open Sans', sans-serif;
   margin: 0;
   padding: 0;
-  /*border: 1px solid red;*/
 }
-
-
-/* General Styling */
 
 main {
   display: flex;
@@ -19,36 +17,35 @@ img {
 }
 
 input {
-  outline: none;
   border: 2px solid #1F1F3D;
+  outline: none;
+  padding-left: 5px;
 }
 
 button {
   background-color: #1F1F3D;
-  color: #ffffff;
-  height: 45px;
-  border: none;
   border-radius: 3px;
-  font-weight: 800;
+  border: none;
+  color: #ffffff;
   font-size: 16px;
-  margin: 15px 0 0px 0;
-  width: 100%;
+  font-weight: 800;
+  height: 45px;
+  margin: 15px 0 0 0;
   outline: none;
 }
 
 button:disabled {
   opacity: 0.6;
-  pointer-events: none;
   transition: 0.2s;
 }
 
 /* Header */
 
 .header-page {
-  background-color: #1F1F3D;
-  height: 55px;
-  display: flex;
   align-items: center;
+  background-color: #1F1F3D;
+  display: flex;
+  height: 55px;
   justify-content: space-between;
 }
 
@@ -77,7 +74,6 @@ span {
    border-left: none;
    height: 40px;
    padding: 10px;
-   text-decoration: none;
    width: 300px;
 }
 
@@ -98,16 +94,13 @@ aside {
   background-color: #587A8A;
   height: 100vh;
   width: 400px;
-  display:inline-block;
-
 }
 
 .aside-sect-1 {
-  border-bottom: 1 px solid #3C6577;
-  display: flex;
-  flex-direction: column;
   align-items: center;
   border-bottom: 2px solid #3C6577;
+  display: flex;
+  flex-direction: column;
   margin-bottom: 4px;
   padding-bottom: 21px;
   }
@@ -128,13 +121,11 @@ form {
 .form-input {
   border: 1px solid #1F1F3D;
   height: 45px;
-  width:100%;
+  width: 100%;
 }
 
 form div {
   display: flex;
-  flex-direction: row;
-  width: 100%;
 }
 
 label {
@@ -150,11 +141,7 @@ label {
 
 .temp-item {
   color: #ffffff;
-  font-size: 16px;
   margin: 10px;
-  list-style-type: none;
-  display: flex;
-  flex-direction: row;
 }
 
 .img-delete {
@@ -164,14 +151,12 @@ label {
 .btn-task {
   background: url('images/plus.svg');
   background-color: #1F1F3D;
-  border: 5px solid #1F1F3D;
   border-bottom-left-radius: 0;
-  border-bottom-right-radius: 3px;
   border-top-left-radius: 0;
-  border-top-right-radius: 3px;
+  border: 5px solid #1F1F3D;
   height: 45px;
   margin-top: 0;
-  width: 53px;
+  width: 49px;
 }
 
 .btn-urgent {
@@ -181,11 +166,11 @@ label {
 /* Card Section */
 
 .card-area {
-  width: 100%;
-  column-width: 15em; 
-  column-count: 3;
   break-inside: avoid;
+  column-count: 3;
+  column-width: 15em; 
   padding: 10px;
+  width: 100%;
 }
 
 .todo-list {
@@ -194,9 +179,8 @@ label {
   break-inside: avoid;
   color: #1F1F3D;
   margin-bottom: 10px;
-  padding: 10px 0px 0px 0px;
+  padding: 10px 0 0 0;
   width: 100%;
-
 }
 
 .urgent {
@@ -205,8 +189,8 @@ label {
 }
 
 .header {
-  height: 40px;
   border-bottom: 2px solid #C7D3D8;
+  height: 40px;
   padding: 4px 0 4px 12px;
 }
 
@@ -225,17 +209,17 @@ ul {
 li {
   display: flex;
   flex-direction: row;
-  padding: 2px;
   margin: 5px 0 5px 0;
+  padding: 2px;
+}
+
+li img {
+  height: 25px;
+  margin-right: 12px;
 }
 
 .active-text {
   font-style: italic;
-}
-
-li img {
-  margin-right: 12px;
-  height: 25px;
 }
 
 .img-urgent {
@@ -243,36 +227,29 @@ li img {
 }
 
 .footer {
-  height: 53px;
   border-top: 2px solid #C7D3D8;
   display: flex;
+  height: 53px;
   justify-content: space-between;
 }
 
 .footer-urgent {
-  height: 53px;
   border-top: 2px solid #FFC30C;
   display: flex;
+  height: 53px;
   justify-content: space-between;
 }
 
 .header-urgent {
-  height: 40px;
   border-bottom: 2px solid #FFC30C;
+  height: 40px;
   padding: 4px 0 4px 12px;
 }
 
-.div-urgent {
+footer div {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin: 5px;
-}
-
-.div-delete {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   margin: 5px;
 }
 
@@ -287,20 +264,20 @@ p {
 }
 
 .label-urgent {
+  color: #B23A25;
   font-size: 10px;
   text-transform: uppercase;
-  color: #B23A25;
 }
 
-#todo-prompt {
+#todo-prompt,
+#urgent-prompt {
+  break-inside: avoid;
   font-size: 20px;
   margin-top: 10px;
-  break-inside: avoid;
 }
 
 .hidden {
   visibility: hidden;
-  border: none;
 }
 
 .active {
@@ -310,18 +287,15 @@ p {
 /* media queries */
 
 @media (max-width: 735px) {
+
   main {
     display: flex;
     flex-direction: column;
   }
 
   aside {
-    width: 100%;
     height: 100%;
-  }
-
-  .card-area {
-
+    width: 100%;
   }
 
   .header-page {
@@ -346,6 +320,7 @@ p {
 }
 
 @media (max-width: 1200px) {
+
   .card-area {
   width: 100%;
   column-count: 2;
@@ -353,11 +328,13 @@ p {
   padding: 10px;
   }
 }
+
 @media (max-width: 900px) {
+
   .card-area {
   width: 100%;
   column-count: 1;
   break-inside: avoid;
   padding: 10px;
-}
+  }
 }
