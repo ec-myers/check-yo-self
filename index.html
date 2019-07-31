@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <header class="header-page">
+    <h1>Check <span>Yo'</span> Self</h1>
+    <div class="div-search">
+      <img src="images/search.svg" alt="search icon">
+      <input type="text" placeholder="Search" id="input-search">
+    </div>
+  </header>
+  <main>
+    <aside>
+      <section class="aside-sect-1">
+        <form class="aside-form">
+          <label>Task Title</label>
+          <input class="form-input" id="input-title" type="text">
+          <ul class="temp-task-list" id="temp-task-list"></ul>
+          <label>Task Item</label>
+          <ul id="temp-task-list"></ul>
+          <div>
+            <input class="form-input" id="input-item" type="text">
+            <button class="img-plus btn-task" id="btn-task" disabled>
+              <!-- <img src="images/plus.svg"> -->
+            </button>  
+          </div>  
+          <button class="btn-make-task" id="btn-make-task" disabled>Make Task List</button>
+          <button class="btn-clear" id="btn-clear" disabled>Clear All</button>
+        </form>
+      </section>
+      <section class="aside-sect-2">
+        <button class="btn-urgency">Filter by Urgency</button>
+      </section>
+    </aside>    
+    <section id="card-area">
+<!--       <article>
+        <header>
+          <h2>Task Title</h2>
+        </header>
+        <ul></ul>
+        <footer>
+          <div class="div-urgent">
+            <img class="img-urgent" src="images/urgent.svg">
+            <p>Urgent</p>
+          </div>
+          <div class="div-delete">
+            <img class="img-delete" id="btn-delete" src="images/delete.svg">
+            <p>Delete</p>
+          </div>
+        </footer>
+      </article> -->
+    </section>
+  </main>
+<script type="text/javascript" src="todo-list.js"></script>
+<script type="text/javascript" src="main.js"></script>
+</body>
+</html>
