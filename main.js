@@ -239,12 +239,6 @@ function displayToDoPrompt() {
 //   }
 // }
 
-// function displayUrgentPrompt() {
-//   var urgentArray = returnUrgentArray(array);
-//   if (urgentArray.length === 0) {
-//     cardArea.insertAdjacentHTML('afterbegin', `<p id="urgent-prompt">You have no urgent items.</p>`);
-//   }
-// }
 
 function toggleUrgentBtn() {
   urgentBtn.clicked = !urgentBtn.clicked;
@@ -253,18 +247,25 @@ function toggleUrgentBtn() {
 function displayUrgent(array) {
   toggleUrgentBtn();
   if (urgentBtn.clicked === true) {
+    var urgentArray = returnUrgentArray(array);
+
     cardArea.innerHTML = '';
     urgentBtn.classList.add('active');
-  var urgentArray = returnUrgentArray(array);
-  populateCards(urgentArray);
+    displayUrgentPrompt(toDoLists);
+    populateCards(urgentArray);
   } else if (urgentBtn.clicked === false) {
-    cardArea.innerHTML = '';
     urgentBtn.classList.remove('active');
+    cardArea.innerHTML = '';
     populateCards(array);
   }
-  displayUrgentPrompt();
 }
 
+function displayUrgentPrompt(array) {
+  var urgentArray = returnUrgentArray(array);
+  if (urgentArray.length === 0) {
+    cardArea.insertAdjacentHTML('afterbegin', `<p id="urgent-prompt">You have no urgent items.</p>`);
+  }
+}
 // function displayUrgent(array) {
 //   cardArea.innerHTML = '';
 //   if (btn)
@@ -334,9 +335,9 @@ function returnSearchArray(array, searchTerms) {
 function enableFormButtons() {
   console.log('inside: enableForm')
   enableTaskBtn();
-  var task = document.querySelector('#temp-item');
+  var tempTask = document.querySelector('#temp-item');
 
-  if (task.innerText !== '' || titleInput.value !== '') {
+  if ((tempTask !== null && tempTask.innerText !== '') && titleInput.value !== '') {
     makeListBtn.disabled = false;
     clearBtn.disabled = false;
   } 
@@ -376,4 +377,5 @@ function clearFormInputs() {
   taskInput.value = '';
   tempTaskList.innerText = '';
   clearBtn.disabled = true;
+  makeListBtn.disabled  = true;
 }
