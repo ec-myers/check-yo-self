@@ -39,13 +39,14 @@ Filtering by urgency:
 <details>
   <summary> Click to View </summary>
   
-![](https://user-images.githubusercontent.com/47042400/62181493-ade7a980-b310-11e9-954b-87b6da9c0146.png) 
+![](https://user-images.githubusercontent.com/47042400/62183415-500a9000-b317-11e9-900a-8586f37713e6.png)
 
 Adding a task(s):
-![](https://user-images.githubusercontent.com/47042400/62181607-1767b800-b311-11e9-9d7e-00c4a858913b.png)
+![](https://user-images.githubusercontent.com/47042400/62183482-9cee6680-b317-11e9-99ce-ab68655fd5a3.png)
 
 Filtering by urgency:
-![](https://user-images.githubusercontent.com/47042400/62181656-48e08380-b311-11e9-8287-443a537f49a2.png)
+![](https://user-images.githubusercontent.com/47042400/62183547-dd4de480-b317-11e9-8075-ce8a74dd55bc.png)
+
  </details>
  
  
