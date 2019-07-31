@@ -10,7 +10,7 @@ Check Yo'Self is an application designed to manage all of your to-do lists. You 
 - CSS
 - JavaScript
 
-#### View this application live on github pages [here]() and use it on your phone!
+#### View this application live on github pages [here](https://ec-myers.github.io/check-yo-self/) and use it on your phone!
 ---
 ### Static Comps and Screenshots
 
