@@ -37,6 +37,7 @@ function handleTempTask(e) {
   } else if (e.target.id === 'btn-make-task') {
     displayTaskList(e);
     clearFormInputs(e);
+    addToDoList();
   } else if (e.target.id === 'btn-clear') {
     clearFormInputs(e);
     enableTaskBtn();
@@ -63,7 +64,7 @@ function handleSearch(e) {
 
 function addTempTask(input) {
   var tempTask = `<li class="temp-item" id="temp-item" data-id=""><img class="img-delete" id="btn-delete" src="images/delete.svg">${input}</li>`;
-  
+
   tempTaskList.insertAdjacentHTML('beforeend', tempTask);
 }
 
@@ -110,6 +111,7 @@ function createTaskList() {
   for (var i = 0; i < taskElements.length; i++ ) {
    toDoTasks.push(new ToDoTask(i + 1,taskElements[i].innerText, false));
   }
+
   return toDoTasks;
 }
 
@@ -123,6 +125,7 @@ function displayTaskList(array) {
 
     liTaskStrings = liTaskStrings + `<li class="${updateCheckedText}" id="task-li" data-id=${task.id}><img id="task-item" src=${checkedImg}>${task.text}</li>`;
   }
+
   return liTaskStrings;
 }
 
@@ -182,12 +185,12 @@ function areAllTasksChecked(toDoList) {
     return false; 
     }
   }
+
   return true;
 }
 
 function updateDeleteBtnImage(e, toDoList) {
-  var areTasksChecked = areAllTasksChecked(toDoList);
-  var deleteImg = areTasksChecked ? "images/delete-active.svg" : "images/delete.svg";
+  var deleteImg = (areTasksChecked = areAllTasksChecked(toDoList)) ? "images/delete-active.svg" : "images/delete.svg";
 
   e.target.closest('.todo-list').querySelector('#btn-delete-2').setAttribute('src', deleteImg);
 }
@@ -260,6 +263,7 @@ function returnUrgentArray(array) {
   var urgentArray = array.filter(function(toDoList) {
     return toDoList.urgent === true;
   });
+
   return urgentArray;
 }
 
@@ -290,6 +294,7 @@ function displaySearch(array) {
     populateCards(array);
   } else {
     var searchArray = returnSearchArray(array, searchInput.value);
+    
     populateCards(searchArray);
   }
 }
@@ -322,10 +327,6 @@ function enableTaskBtn() {
   } else if (titleInput.value === '' && taskInput.value === '') {
     addTaskBtn.disabled = true;
   }
-}
-
-function disableTaskBtn() {
-  addTaskBtn.disabled = true;
 }
 
 function clearTaskInput() {
