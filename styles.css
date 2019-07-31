@@ -18,8 +18,9 @@ img {
 
 input {
   border: 2px solid #1F1F3D;
+  font-size: 18px;
   outline: none;
-  padding-left: 5px;
+  padding-left: 10px;
 }
 
 button {
@@ -114,8 +115,9 @@ aside {
 form {
   display: flex;
   flex-direction: column;
-  width: 95%;
   justify-content: center;
+  padding-top: 20px;
+  width: 95%;
 }
 
 .form-input {
@@ -123,6 +125,10 @@ form {
   height: 45px;
   width: 100%;
 }
+
+::placeholder {
+  font-size: 16px;
+}  
 
 form div {
   display: flex;
@@ -190,13 +196,20 @@ label {
 
 .header {
   border-bottom: 2px solid #C7D3D8;
-  height: 40px;
-  padding: 4px 0 4px 12px;
+  height: 34px;
+  padding-left: 15px;
+}
+
+.header-urgent {
+  border-bottom: 2px solid #FFC30C;
+  height: 34px;
+  padding-left: 15px;
 }
 
 article h2 {
   color: #1F1F3D;
   font-size: 20px;
+  font-weight: 700;
 }
 
 ul {
@@ -210,7 +223,8 @@ li {
   display: flex;
   flex-direction: row;
   margin: 5px 0 5px 0;
-  padding: 2px;
+  padding: 6px;
+  font-size: 18px;
 }
 
 li img {
@@ -240,11 +254,6 @@ li img {
   justify-content: space-between;
 }
 
-.header-urgent {
-  border-bottom: 2px solid #FFC30C;
-  height: 40px;
-  padding: 4px 0 4px 12px;
-}
 
 footer div {
   align-items: center;
@@ -256,6 +265,7 @@ footer div {
 p {
   font-size: 10px;
   text-transform: uppercase;
+  padding-right: 4px;
 }
 
 .label {
